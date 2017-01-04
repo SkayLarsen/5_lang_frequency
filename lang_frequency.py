@@ -5,11 +5,10 @@ from collections import Counter
 
 
 def load_data(filepath):
-    if os.path.exists(filepath):
-        with open(filepath, 'r') as text_file:
-            return text_file.read()
-    else:
+    if not os.path.exists(filepath):
         return None
+    with open(filepath, 'r') as text_file:
+        return text_file.read()
 
 
 def get_most_frequent_words(text):
