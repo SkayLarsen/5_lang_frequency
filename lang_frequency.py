@@ -13,12 +13,14 @@ def load_data(filepath):
 
 
 def get_most_frequent_words(text):
-    return Counter(text.split()).most_common(10)
+    number_of_words = 10
+    text = text.replace('\n', ' ')
+    text = text.translate(str.maketrans({char: None for char in string.punctuation}))
+    return Counter(text.split()).most_common(number_of_words)
 
 
 if __name__ == '__main__':
-    text_data = load_data(sys.argv[1]).replace('\n', ' ').translate(
-        str.maketrans({a: None for a in string.punctuation}))
+    text_data = load_data(sys.argv[1])
     if text_data:
         for word in get_most_frequent_words(text_data):
             print(word[0], word[1])
